@@ -1,6 +1,7 @@
 --    You must to install the plugs bellow on config/lazy.lua
 --    { import = "lazyvim.plugins.extras.dap.core" },
 --    { import = "lazyvim.plugins.extras.lsp.none-ls" },
+--    { import = "lazyvim.plugins.extras.test.core" },
 
 return {
   {
@@ -11,27 +12,29 @@ return {
       end
     end,
   },
+
+  -- Lsp
   {
-    "williamboman/mason-lspconfig.nvim",
-    opts = function(_, opts)
-      opts.ensure_installed = { "phpactor" }
-    end,
+    "williamboman/mason.nvim",
+    opts = {
+      ensure_installed = { "phpactor" },
+    },
   },
+
+  --- Formatter
   {
     "jay-babu/mason-null-ls.nvim",
-    opts = function(_, opts)
-      opts.ensure_installed = { "php-cs-fixer" }
-    end,
+    opts = {
+      ensure_installed = { "php-cs-fixer" },
+    },
   },
+
+  --- Dap
   {
     "jay-babu/mason-nvim-dap.nvim",
     opts = {
-      -- Makes a best effort to setup the various debuggers with
-      -- reasonable debug configurations
       automatic_installation = true,
 
-      -- You can provide additional configuration to the handlers,
-      -- see mason-nvim-dap README for more information
       handlers = {
         php = function(config)
           config.adapters = {
@@ -55,12 +58,30 @@ return {
         end,
       },
 
-      -- You'll need to check that you have the required things installed
-      -- online, please don't ask me how to install them :)
       ensure_installed = {
         "php",
       },
     },
   },
-  { "nvim-neotest/nvim-nio" },
+
+  -- Test
+  {
+    "nvim-neotest/neotest",
+    dependencies = {
+      "olimorris/neotest-phpunit",
+    },
+    opts = {
+      adapters = {
+        ["neotest-phpunit"] = {
+          env = {
+            CONTAINER = "rcs-app-1",
+            REMOTE_PHPUNIT_BIN = "bin/phpunit",
+          },
+          phpunit_cmd = function()
+            return "nvim/neotest" -- docker compose -f docker/docker-compose.yml exec app bin/phpunit $1
+          end,
+        },
+      },
+    },
+  },
 }
