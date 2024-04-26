@@ -54,6 +54,7 @@ return {
               },
             },
           }
+
           require("mason-nvim-dap").default_setup(config)
         end,
       },
@@ -80,6 +81,8 @@ return {
           phpunit_cmd = function()
             return "nvim/neotest" -- docker compose -f docker/docker-compose.yml exec app bin/phpunit $1
           end,
+
+          dap = require("dap").configurations[1],
         },
       },
     },
