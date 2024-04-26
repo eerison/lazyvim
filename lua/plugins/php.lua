@@ -78,10 +78,7 @@ return {
             CONTAINER = "rcs-app-1",
             REMOTE_PHPUNIT_BIN = "bin/phpunit",
           },
-          phpunit_cmd = function()
-            return "nvim/neotest" -- docker compose -f docker/docker-compose.yml exec app bin/phpunit $1
-          end,
-
+          phpunit_cmd = "nvim/neotest",
           dap = require("dap").configurations[1],
         },
       },
