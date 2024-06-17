@@ -9,6 +9,9 @@ if true then return {} end
 -- * disable/enabled LazyVim plugins
 -- * override the configuration of LazyVim plugins
 return {
+  -- test snippet
+  -- { "eerison/friendly-snippets", branch = "construct_php8" },
+
   -- add gruvbox
   { "ellisonleao/gruvbox.nvim" },
 
