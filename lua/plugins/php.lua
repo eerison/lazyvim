@@ -1,32 +1,24 @@
--- https://www.lazyvim.org/extras/lang/php
+-- it will be used for default lazyvim dap
+local dap = require("dap")
+dap.adapters.php = {
+  type = "executable",
+  command = "node",
+  args = { os.getenv("HOME") .. "/.config/nvim-external/vscode-php-debug/out/phpDebug.js" },
+}
+
+dap.configurations.php = {
+  {
+    type = "php",
+    request = "launch",
+    name = "Listen for Xdebug",
+    port = 9003,
+    pathMappings = {
+      ["/app"] = "${workspaceFolder}",
+    },
+  },
+}
 
 return {
-
-  --DAP
-  {
-    "mfussenegger/nvim-dap",
-    opts = function()
-      local dap = require("dap")
-      dap.adapters.php = {
-        type = "executable",
-        command = "node",
-        args = { os.getenv("HOME") .. "/.config/nvim-external/vscode-php-debug/out/phpDebug.js" },
-      }
-
-      dap.configurations.php = {
-        {
-          type = "php",
-          request = "launch",
-          name = "Listen for Xdebug",
-          port = 9003,
-          pathMappings = {
-            ["/app"] = "${workspaceFolder}",
-          },
-        },
-      }
-    end,
-  },
-
   -- Test
   {
     "nvim-neotest/neotest",
@@ -36,13 +28,14 @@ return {
     opts = {
       adapters = {
         ["neotest-phpunit"] = {
+          dap = dap.configurations.php[1], -- ISSUE: it isn't working
           env = {
-            CONTAINER = "rcs-app-1",
+            XDEBUG_CONFIG = "idekey=neotest", -- ISSUE: It isn't working!
+            CONTAINER = "easy-php-setup-php-1",
             -- REMOTE_PHPUNIT_BIN = "bin/codecept run",
-            REMOTE_PHPUNIT_BIN = "bin/phpunit",
+            REMOTE_PHPUNIT_BIN = "vendor/bin/phpunit",
           },
-          phpunit_cmd = "nvim/neotest",
-          -- dap = require("dap").configurations.php, -- BUG: For some reason this dap configuration does not work with this config.
+          -- phpunit_cmd = "nvim/neotest",
         },
       },
     },
