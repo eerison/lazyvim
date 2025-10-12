@@ -1,7 +1,8 @@
 # 💤 LazyVim
 
-A starter template for [LazyVim](https://github.com/LazyVim/LazyVim).
+A starter template for [LazyVim](https://github.com/LazyVim/LazyVim) based on omarchy.
 Refer to the [documentation](https://lazyvim.github.io/installation) to get started.
+
 
 ## Nerdfonts
 
@@ -12,3 +13,4 @@ Refer to the [documentation](https://lazyvim.github.io/installation) to get star
 ## Ansible
 
 it can be setup using https://github.com/eerison/.dotfiles
+
