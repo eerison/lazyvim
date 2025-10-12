@@ -1,0 +1,1 @@
+/home/erison/.config/omarchy/current/theme/neovim.lua

@@ -35,6 +35,7 @@ return {
             -- REMOTE_PHPUNIT_BIN = "bin/codecept run",
             REMOTE_PHPUNIT_BIN = "vendor/bin/phpunit",
           },
+          filter_dirs = { "vendor" },
           -- phpunit_cmd = "nvim/neotest",
         },
       },
@@ -52,7 +53,7 @@ return {
   },
 
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     opts = {
       ensure_installed = {
         "phpstan",
