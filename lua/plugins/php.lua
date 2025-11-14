@@ -30,8 +30,8 @@ return {
         ["neotest-phpunit"] = {
           dap = dap.configurations.php[1], -- ISSUE: it isn't working
           env = {
-            XDEBUG_CONFIG = "idekey=neotest", -- ISSUE: It isn't working!
-            CONTAINER = "easy-php-setup-php-1",
+            -- XDEBUG_CONFIG = "idekey=neotest", -- ISSUE: It isn't working!
+            CONTAINER = "fastest-finger-php-1",
             -- REMOTE_PHPUNIT_BIN = "bin/codecept run",
             REMOTE_PHPUNIT_BIN = "vendor/bin/phpunit",
           },
