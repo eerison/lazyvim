@@ -10,7 +10,7 @@ dap.configurations.php = {
   {
     type = "php",
     request = "launch",
-    name = "Listen for Xdebug",
+    name = "[Docker] Listen for Xdebug",
     port = 9003,
     pathMappings = {
       ["/app"] = "${workspaceFolder}",
