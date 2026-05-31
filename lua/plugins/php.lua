@@ -20,6 +20,7 @@ dap.configurations.php = {
 
 return {
   -- Test
+  { "nvim-neotest/nvim-nio" },
   {
     "nvim-neotest/neotest",
     dependencies = {
